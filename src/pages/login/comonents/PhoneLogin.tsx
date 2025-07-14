@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from 'sonner';
 import { request } from '@/utils/request';
+
 interface PhoneLoginProps {
   onLogin: (phone: string, code: string) => void;
 }
@@ -15,13 +17,13 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
   // 发送验证码
   const handleSendCode = async () => {
     if (!phone || !/^1[3-9]\d{9}$/.test(phone)) {
-      alert('请输入正确的手机号');
+      toast.error('请输入正确的手机号');
       return;
     }
 
-    //setIsLoading(true);
+    setIsLoading(true);
     try {
-      const response = await fetch(`/api/sendcode`, {
+      const response = await request(`/api/sendcode`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,6 +35,8 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
         throw new Error('发送验证码失败');
       }
 
+      toast.success('验证码已发送');
+      
       // 开始倒计时
       setCountdown(60);
       const timer = setInterval(() => {
@@ -47,7 +51,7 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
 
     } catch (error) {
       console.error('发送验证码失败:', error);
-      alert('发送验证码失败，请重试');
+      toast.error('发送验证码失败，请重试');
     } finally {
       setIsLoading(false);
     }
@@ -58,7 +62,7 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
     e.preventDefault();
     
     if (!phone || !code) {
-      alert('请输入手机号和验证码');
+      toast.error('请输入手机号和验证码');
       return;
     }
 
@@ -66,25 +70,17 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
     try {
       const response = await request(`/api/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ phone, code }),
       });
 
       const data = await response.json();
-      console.log(data);
-      
-      if (!response.ok) {
-        throw new Error(data.message || '登录失败');
-      }
 
       //执行登录成功回调
       handleLoginSuccess(data.data.token);
       
     } catch (error) {
       console.error('登录失败:', error);
-      alert(error instanceof Error ? error.message : '登录失败，请重试');
+      toast.error(error instanceof Error ? error.message : '登录失败，请重试');
     } finally {
       setIsLoading(false);
     }
@@ -97,7 +93,6 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
         <div className="flex items-center justify-center mb-4">
           <span style={{fontFamily: 'Audiowide, system-ui', color: '#ff6600'}} className="text-3xl ml-2">botgroup.chat</span>
         </div>
-
 
         <div className="text-gray-500 mb-4 text-center">
           仅支持中国大陆手机号登录

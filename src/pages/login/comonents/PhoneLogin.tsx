@@ -14,6 +14,9 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
   const [countdown, setCountdown] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
+  // 获取备案号配置
+  const icpNumber = (window as any).APP_CONFIG?.ICP_NUMBER;
+
   // 发送验证码
   const handleSendCode = async () => {
     if (!phone || !/^1[3-9]\d{9}$/.test(phone)) {
@@ -144,6 +147,13 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
             ) : '登录'}
           </Button>
         </form>
+
+        {/* 备案号显示 */}
+        {icpNumber && (
+          <div className="text-center mt-8 text-xs text-gray-400">
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">{icpNumber}</a>
+          </div>
+        )}
       </div>
     </div>
   );

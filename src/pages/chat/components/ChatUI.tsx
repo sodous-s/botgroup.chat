@@ -71,7 +71,7 @@ const ChatUI = () => {
   const [allNames, setAllNames] = useState([]);
   const [showMembers, setShowMembers] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [showAd, setShowAd] = useState(true);
+  const [showAd, setShowAd] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
   const [pendingContent, setPendingContent] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -452,10 +452,11 @@ const ChatUI = () => {
                 
                 {/* 右侧头像组和按钮 */}
                 <div className="flex items-center">
-                {/* 广告位 手机端不展示*/}
+                {/* 广告位 手机端不展示 */}
                  <div className="hidden md:block">
                    <AdBanner show={showAd} closeAd={() => setShowAd(false)} />
                  </div>
+                
                   <div className="flex -space-x-2 ">
                     {users.slice(0, 4).map((user) => {
                       const avatarData = getAvatarData(user.name);

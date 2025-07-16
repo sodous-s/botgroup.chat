@@ -120,8 +120,9 @@ const Sidebar = ({ isOpen, toggleSidebar, selectedGroupIndex = 0, onSelectGroup,
             </nav>
           </div>
           
-          {/* 广告位 */}
+          {/* 广告位 
           <AdSection isOpen={isOpen} />
+          */}
 
           {/* 用户信息模块 */}
           <UserSection isOpen={isOpen} />

@@ -105,7 +105,7 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 maxLength={11}
-                className={`border-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none p-0 ${isMobile ? 'text-sm' : 'text-base'}`}
+                className={`border-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none p-0 ${isMobile ? 'text-base' : 'text-base'}`}
               />
             </div>
           </div>
@@ -117,7 +117,7 @@ const PhoneLogin: React.FC<PhoneLoginProps> = ({ handleLoginSuccess }) => {
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 maxLength={6}
-                className={`border rounded-lg ${isMobile ? 'p-2.5' : 'p-3'} ${isMobile ? 'h-[42px]' : 'h-[46px]'} focus:border-[#ff6600] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none ${isMobile ? 'text-sm' : 'text-base'}`}
+                className={`border rounded-lg ${isMobile ? 'p-2.5' : 'p-3'} ${isMobile ? 'h-[42px]' : 'h-[46px]'} focus:border-[#ff6600] focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none ${isMobile ? 'text-base' : 'text-base'}`}
               />
               <Button
                 type="button"

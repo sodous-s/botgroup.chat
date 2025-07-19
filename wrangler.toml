@@ -8,6 +8,5 @@ binding = "bgdb" # available in your Worker on env.DB
 database_name = "friends"
 database_id = "f68e9fa5-4aea-45db-9516-2d7052e936fa"
 
-[site]
-bucket = "./dist"
-exclude = ["config.js"]
+[vars]
+IS_CF = '1'

@@ -11,14 +11,14 @@ export default defineConfig({
     port: 3000,
     open: true,
     host: true,
-    // 如果有跨域需求，可以添加代理配置
-    // proxy: {
-    //   '/api': {
-    //     target: 'your-api-url',
-    //     changeOrigin: true,
-    //     rewrite: (path) => path.replace(/^\/api/, '')
-    //   }
-    // }
+    // 代理配置解决跨域问题
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8082',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
   resolve: {
     alias: {

@@ -63,7 +63,7 @@ const WechatLogin: React.FC<WechatLoginProps> = ({ handleLoginSuccess }) => {
             case 'scanned':
               setLoginStatus('scanned');
               break;
-            case 'confirmed':
+            case 'success':
               // 登录成功
               handleLoginSuccess(data.data.token);
               if (pollingRef.current) {

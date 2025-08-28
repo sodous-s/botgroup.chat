@@ -6,7 +6,7 @@ import AuthGuard from './components/AuthGuard';
 
 export const router = createBrowserRouter([
   {
-    path: '/login2',
+    path: '/login',
     element: <Login />,
   },
   {

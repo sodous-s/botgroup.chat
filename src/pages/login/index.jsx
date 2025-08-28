@@ -16,7 +16,7 @@ export default function Login() {
 
   React.useEffect(() => {
     const isLogin = localStorage.getItem('token');
-    if (isLogin || window.APP_CONFIG.AUTH_ACCESS === '0') {
+    if (isLogin) {
       window.location.href = '/';  // 由于是 Vite 多页面，这里使用 window.location.href
     }
   }, []);
